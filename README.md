@@ -2,56 +2,67 @@
 
 ## 📌 Project Overview
 
-TI took a "messy" sales file and cleaned it. I added new columns to help the business understand their profits and how fast they work.
-
-## 🛠 Tech Stack
-
-- **Excel**: Advanced Formulas (`VLOOKUP`, `IFERROR`, `SUBSTITUTE`, `DATEVALUE`), Data Cleaning, and Pivot Tables.
-- **Data Analysis Concepts**: Feature Engineering, KPI calculation, and Data Validation.
-
-# Project: Sales Data Cleaning & Analysis
-
-## 📌 What is this project about?
-
 I took a "messy" sales file and cleaned it. I added new columns to help the business understand their profits and how fast they work.
 
 ## 🛠 What I did (Step-by-Step)
 
-### 1. Sorted products from services
+### 🗓 Sales Data Tab
 
-- **Column added:** `Item Category`
-- **Why:** I separated real **Products** (books) from **Services** (delivery fees). This helps to see what we are actually selling.
+I cleaned and improved the raw data to make it reliable for analysis.
 
-### 2. Fixed the money data
+- **Data Accuracy:** I recalculated the revenue in the `Net Revenue Cleaned` column to fix errors in the original file.
 
-- **Column added:** `Net Revenue Cleaned`
-- **Why:** The old revenue numbers had mistakes. I used the formula `Price - Discount` to get the correct amount.
+- **Logistics Integration:** I integrated shipping costs and carrier information from reference tables. This allows the business to see the total cost of every sale, including delivery.
 
-### 3. Tracked real profit
+- **Operational Metrics:** I extracted the `Order Date` and calculated `Lead Time (hours)`. This shows how much time the warehouse needs to process an order.
 
-- **Column added:** `COGS` (Cost of Goods)
-- **Why:** I used a formula to pull the price of each book from the warehouse data. We need this to see how much we actually spend on products.
+- **Profitability Tracking:** I added `COGS` for calculate the real profit for every transaction.
 
-### 4.
+### 🗓 Publisher Analysis Tab
 
-- **Column added:** `Shipping Cost (UAH)` (The money we pay for delivery.)
-- **Why:** I created a complex formula to calculate shipping prices automatically. It helps to see how delivery costs affect our final profit.
+In this tab, I analyzed the performance of different publishers.
 
-- **Logistics Carrier**
-  - **What it is:** The name of the delivery service (Nova Poshta or Ukrposhta).
-  - **Why I added it:** I pulled this data from the shipping logs. Now we can compare which company is cheaper or more popular among customers.
+**1. Key Metrics Calculated:**
 
-### 3. Tracked real profit
+- **Net Revenue:** I extracted total sales after discounts by publisher. This shows the scale of the business.
 
-- **Column added:** `COGS` (Cost of Goods)
-- **Why:** I used a formula to pull the price of each book from the warehouse data. We need this to see how much we actually spend on products.
+- **Gross Margin:** I calculated profit after paying for the products (Net Revenue - COGS).
 
-### 3. Automated the shipping costs
+- **Margin %:** I calculated profitability of each publisher. It helps identify which partners are the most profitable.
 
-- **Columns added:** `Shipping Cost` and `Logistics Carrier`
-- **Why:** I used a formula to automatically pull delivery prices for **Nova Poshta** and **Ukrposhta**. No more manual checking!
+**2. Pareto Analysis (80/20 Rule):**
 
-### 4. Calculated work speed
+I used the Pareto principle to find the most important publishers.
 
-- **Columns added:** `Order Timestamp` and `Lead Time (Hours)`
-- **Why:** I extracted the exact time of each order. Then, I calculated the hours between the "Order" and the "Invoice." This shows how fast the team processes orders.
+- **The logic:** I sorted publishers by Net Revenue and calculated the cumulative percentage.
+
+- **Result:** I discovered that only **12% of publishers generate 80% of the total revenue**.
+
+- **Business impact:** This means the business is highly dependent on a small group of top partners.
+
+**3. Negative Margin Alerts:**
+
+I found cases where the margin was negative.
+This happened when discounts were too high or the purchase price (COGS) was higher than the selling price.
+
+### 🗓 Customer Insights Tab
+
+In this tab, I analyzed customer behavior and operational efficiency to understand purchasing patterns and warehouse performance.
+
+**1. Key Metrics Calculated:**
+
+- **Unique Customers (DAU):** I used the UNIQUE and FILTER functions to count how many individual people made a purchase each day. This distinguishes real customers from the total number of transactions.
+
+- **Order Volume:** I tracked the total number of invoices per day to see the daily workload.
+
+- **Average Order Value (AOV):** I calculated the average spend per order, strictly excluding shipping costs. This reflects the "clean" amount customers spend on products.
+
+**2. High-Value Order Analysis:**
+
+I identified orders that contribute the most to the company's revenue.
+
+- **The logic:** I flagged all orders exceeding 600 UAH using a helper column.
+
+- **Result:** I calculated the percentage of these high-value orders compared to the daily total.
+
+- **Business impact:** This helps the marketing team evaluate if bundles or "buy more" promotions are successfully increasing the basket size.
